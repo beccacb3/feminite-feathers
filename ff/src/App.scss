@@ -1,0 +1,294 @@
+
+
+//TODO - nav bar name, react icon, mix in, color, font-sizes, red lighter
+//add marker to map
+//gray height on smaller sizes
+//color map
+//aninmations - fade in and down
+
+
+@mixin respond($breakpoint) {
+	$breakpointEM: ($breakpoint / 16) *1em;
+	@if $breakpointEM > 2000 {
+		@media (max-width: $breakpointEM) {
+			@content;
+		}
+	} @else {
+		@media (max-width: $breakpointEM) {
+			@content;
+		}
+	}
+}
+
+//Variables
+$gray: #EEE;
+$red: #9E0117;
+$red_lighter: #9E0117aa;
+$active: $red;
+$inactive: #aaa;
+$hovered: black;
+
+$cursive: 'Lobster', cursive;
+$inter: 'Inter', sans-serif;
+$roboto: 'Roboto', sans-serif;
+
+$graySize: 90px;
+
+//Headers are roboto, special fonts are cursive lobster, paragraphs are inter
+h1{
+    font-family: $cursive;
+    font-size: $graySize;
+    color: white;
+
+    @include respond(1000){
+        font-size: 65px;
+    }
+
+    @include respond(700){
+        font-size: 55px;
+    }
+}
+
+h2{
+    font-family: $roboto;
+    font-size: 30px;
+}
+
+p{
+    font-family: $inter;
+    font-size: 25px;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.navigation{
+    display: flex;
+    justify-content: space-between;
+    font-family: $roboto;
+    color: $inactive;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
+    width: 100%;
+    box-shadow: 0px 4px 10px 10px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+
+    .left_logo > div, .right > div{
+        padding: 20px;
+        transition: 0.5s;
+    }
+
+    .left_logo > div:hover, .right > div:hover{
+        color: $hovered;
+        cursor: pointer;
+    }
+
+    .right{
+        display: flex;
+        justify-content: center; 
+    }
+}
+
+//gray header for about and contact
+.grayHeader{
+    background-color: $gray;
+    color: white;
+    font-family: $cursive;
+    padding-top: 20px;
+    border-top: solid $red_lighter 10px;
+    h1{
+        line-height: 75%;
+    }
+    > div{
+        width: 90%;
+        margin: auto;
+    }
+}
+
+.contact_us{
+    .contact_content{
+        padding: 50px 0px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        margin: 0 auto;
+        > div{
+            padding: 0px 20px;
+        }
+        .left{
+            width: 45%;
+            h2{
+                color: $red;
+                display: inline;
+                border-bottom: $red solid 2px;
+            }
+            p{
+                line-height: 35px;
+            }
+            p{
+                padding: 20px 0;
+            }
+        }
+        .right{
+            width: 55%;
+        }
+    }
+}
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+
+    .right{
+        display: flex;
+        align-items: center;
+        div{
+            margin: 10px;
+            background-color: white;
+            content: "";
+            width: 15px;
+            height: 15px;
+        }
+    }
+}
+
+.home{
+    //Reusable Designs on Home
+    margin-top: 15px;
+
+    //Border around mission statement and newest collection
+    .mission_statement, .newest_collection{
+        $border: black solid 20px;
+        border-bottom: $border;
+        border-top: $border;
+    }
+
+
+    .title_section{
+        .image_container{
+            color: white;
+            background-color: rgba(0,0,0,0.5);
+            padding: 200px;
+        }
+        background-image: url('./images/home/img1.png');
+        background-size: cover;
+    }
+
+    .mission_statement{
+        .mission_statement_body{
+            display: flex;
+            text-align: center;
+            max-width: 1000px;
+            margin: auto;
+            padding: 70px 20px;
+            p{
+                line-height: 35px;
+                padding: 30px;
+            }
+            .mission_buttons{
+                display: flex;
+                justify-content: center;
+                .button_two{
+                    margin: 10px 20px;
+                    border: $red solid 2px;
+                    color: white;
+                    background-color: $red;
+                    padding: 8px 20px;
+                    transition: 0.5s;
+                    font-size: 20px;
+                }
+                .button_two:hover{
+                    cursor: pointer;
+                    background-color: white;
+                    color: $red;
+                }
+
+                .button_one{
+                    margin: 10px 20px;
+                    border: $red solid 2px;
+                    color: $red;
+                    background-color: white;
+                    padding: 8px 20px;
+                    transition: 0.5s;
+                    font-size: 20px;
+                }
+                .button_one:hover{
+                    cursor: pointer;
+                    background-color: $red;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .newest_collection{
+        .floral_image{
+            background-image: url('./images/home/img2.png');
+            background-size: cover;
+            .black_cover{
+                padding-top: 20px;
+                padding-bottom: 100px;
+                background-color: rgba(0,0,0,0.5);
+
+                > div{
+                    width: 90%;
+                    margin: 0 auto;
+                    padding: 60px 0px;
+                }
+            }
+        }
+        .angled_container{
+            position: relative;
+            background-color: white;
+            z-index: 1;
+            /*&:before, &:after{
+                background: inherit;
+                content: '';
+                display: block;
+                height: 50%;
+                left: 0;
+                position: absolute;
+                right: 0;
+                z-index: -1;
+            }
+
+            &:before {
+                top: 0;
+                transform: skewY(3.5deg);
+                transform-origin: 100% 0;
+            }*/
+
+            .no_cover{
+                display: flex;
+                justify-content: space-between;
+                width: 70%;
+                margin: 0 auto;
+                
+                //padding-bottom: 20px;
+                img{
+                    transform: translateY(-80px)
+                }
+            }
+        }
+    }
+}
+
+.shop{
+
+}
+
+.about{
+
+}
+
+.contact{
+
+}
+
+
